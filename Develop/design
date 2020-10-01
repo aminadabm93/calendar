@@ -1,0 +1,19 @@
+things to add:
+
+- date at top
+- time blocks for standard business hours 9-5
+- time blocks colored using class for past,present, or future
+- click to update timeblock w/ text -> then hit save 
+- saved in local storage if we refresh
+
+
+each row is an hour
+
+each row has 3 columns 
+col 1: has the hours of the day 9-5
+col 2: has the text for events 
+col 3: has a save button 
+
+steps to work on things 
+
+create rows and columns 
