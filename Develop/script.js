@@ -1,6 +1,6 @@
 //event data for each time-block
-var events = ["","","","","","","","",""];
-var hours = [0900,1000,1100,1200,1300,1400,1500,1600,1700];
+var events = JSON.parse(localStorage.getItem("allEvents")) ||["","","","","","","","",""];
+var hours = [900,1000,1100,1200,1300,1400,1500,1600,1700];
 
 
 //update the #currentDay paragraph w/ today's date , fullDay, date, year
@@ -28,9 +28,18 @@ function updateColors(){
 }
 
 updateColors();
+function updateEvents(){
+   for(var i=0; i<events.length;i++){
+      var text = events[i];
+      $("#"+hours[i]).val(text);
+   }
+}
 //need to add even listener for save buttons. 
 // then target that button's textarea class 
 // save that textarea into array.
+
+updateEvents();
+
 $("button").on("click",function(){
    var btnID = $(this).attr("id");
    var textID = btnID.replace("-Btn","");
@@ -38,7 +47,7 @@ $("button").on("click",function(){
    var eventsIndex = hours.indexOf(parseInt(textID));
    events[eventsIndex] = $("#"+textID).val();
    localStorage.setItem("allEvents",JSON.stringify(events));
-   console.log(localStorage.getItem("allEvents"));
 });
 
-//need a function to load events
+//need a function to clear events
+localStorage.clear();
