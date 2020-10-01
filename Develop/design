@@ -1,7 +1,7 @@
 things to add:
 
-- date at top
-- time blocks for standard business hours 9-5
+- *date at top
+- *time blocks for standard business hours 9-5
 - time blocks colored using class for past,present, or future
 - click to update timeblock w/ text -> then hit save 
 - saved in local storage if we refresh
