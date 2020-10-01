@@ -1,4 +1,7 @@
-//functions 
+//event data for each time-block
+var events = ["","","","","","","","",""];
+var hours = [0900,1000,1100,1200,1300,1400,1500,1600,1700];
+
 
 //update the #currentDay paragraph w/ today's date , fullDay, date, year
 $("#currentDay").text(moment().format("MMMM Do[, ] YYYY"));
@@ -6,17 +9,11 @@ $("#currentDay").text(moment().format("MMMM Do[, ] YYYY"));
 
 //update background-color of textarea based on current hour #9-desctiption
 function updateColors(){
-    //needs to compare the current hour (using moment().hour()) 
-    //example - it is 10 am. now the 10 am block needs to have present class
-    // the 8 and 9 am need the past class
-    // and all others need future class 
-    var currentHour = moment().hour();
-    console.log(typeof(currentHour));
+    //needs to compare the current hour, using military time for simplicity
+    var currentHour = parseInt(moment().format("hh00")) ;
     //cycle through the time-blocks
-    var hours = [9,10,11,12,1,2,3,4,5];
-    for(var i=0; i<9; i++){
+    for(var i=0; i<hours.length; i++){
         //we in the future
-        console.log
          if(hours[i]>currentHour)
          {
             $("#"+hours[i]).addClass("future");
@@ -26,9 +23,22 @@ function updateColors(){
          }
          else{
             $("#"+hours[i]).addClass("past");
-
          }
-
     }
 }
+
 updateColors();
+//need to add even listener for save buttons. 
+// then target that button's textarea class 
+// save that textarea into array.
+$("button").on("click",function(){
+   var btnID = $(this).attr("id");
+   var textID = btnID.replace("-Btn","");
+   //save to events array w/ index of 
+   var eventsIndex = hours.indexOf(parseInt(textID));
+   events[eventsIndex] = $("#"+textID).val();
+   localStorage.setItem("allEvents",JSON.stringify(events));
+   console.log(localStorage.getItem("allEvents"));
+});
+
+//need a function to load events
