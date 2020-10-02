@@ -48,6 +48,3 @@ $("button").on("click",function(){
    events[eventsIndex] = $("#"+textID).val();
    localStorage.setItem("allEvents",JSON.stringify(events));
 });
-
-//need a function to clear events
-localStorage.clear();
